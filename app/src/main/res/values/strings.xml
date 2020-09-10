@@ -60,4 +60,14 @@
     <string name="title_appointments">Appointments</string>
     <string name="random_specialty">Dermatologist</string>
     <string name="delete">Delete</string>
+    <string name="from">from</string>
+    <string name="team_name">Monks</string>
+    <string name="city">City</string>
+    <string name="schedule">Schedule</string>
+    <string name="max_patients_per_day">Max patients per day</string>
+    <string name="save">Save</string>
+    <string name="if_a_day_is_empty_it_implies_that_it_is_closed">If a day is empty, it implies that it is closed</string>
+    <string name="city_unspecified">City must be specified</string>
+    <string name="schedule_unspecified">Schedule must be specified</string>
+    <string name="specialty_unspecified">Specialty must be specified</string>
 </resources>

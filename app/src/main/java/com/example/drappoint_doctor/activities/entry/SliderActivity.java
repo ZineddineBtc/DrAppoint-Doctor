@@ -1,4 +1,4 @@
-package com.example.drappoint_doctor;
+package com.example.drappoint_doctor.activities.entry;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.example.drappoint_doctor.R;
+import com.example.drappoint_doctor.adapters.SliderAdapter;
 
 import java.util.Objects;
 

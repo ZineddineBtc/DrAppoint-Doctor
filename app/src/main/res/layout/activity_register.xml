@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.entry.LoginActivity"
-    android:background="#ffffff">
+    tools:context=".activities.entry.RegisterActivity"
+    android:background="@drawable/white_background_rounded_border">
 
     <TextView
         android:visibility="gone"
@@ -27,11 +27,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"/>
 
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_back_special"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:elevation="10dp"
+        android:background="@drawable/back_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        android:onClick="toLogin"/>
+
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,10 +57,10 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -89,12 +107,12 @@
             android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:ems="12"
             android:hint="@string/email"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
             android:inputType="textEmailAddress"/>
 
         <EditText
@@ -110,14 +128,14 @@
             android:layout_gravity="center"/>
 
         <Button
-            android:text="@string/login"
+            android:text="@string/register"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/special_background_rounded_border"
-            android:onClick="login"/>
+            android:onClick="signUp"/>
     </LinearLayout>
 
 
@@ -135,16 +153,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_here"
+            android:text="@string/already_registered"
             android:textColor="#000000"
             android:layout_marginRight="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_now"
+            android:text="@string/login"
             android:textColor="@color/special"
-            android:onClick="toRegister"/>
+            android:onClick="toLogin"/>
 
     </LinearLayout>
 
