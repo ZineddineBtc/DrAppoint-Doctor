@@ -70,4 +70,5 @@
     <string name="city_unspecified">City must be specified</string>
     <string name="schedule_unspecified">Schedule must be specified</string>
     <string name="specialty_unspecified">Specialty must be specified</string>
+    <string name="address_city">Address, city</string>
 </resources>
