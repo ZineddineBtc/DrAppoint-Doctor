@@ -71,4 +71,7 @@
     <string name="schedule_unspecified">Schedule must be specified</string>
     <string name="specialty_unspecified">Specialty must be specified</string>
     <string name="address_city">Address, city</string>
+    <string name="patients_booked_for">Patients booked for</string>
+    <string name="title_patients">Patients</string>
+    <string name="no_patients_for_this_date">No patients for this date</string>
 </resources>

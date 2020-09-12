@@ -47,7 +47,6 @@ public class ProfileFragment extends Fragment {
             editMax, editSchedule;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private FirebaseFirestore database;
     private DocumentReference userReference;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,7 +54,7 @@ public class ProfileFragment extends Fragment {
         fragmentView = inflater.inflate(R.layout.fragment_profile, container, false);
         sharedPreferences = fragmentView.getContext().getSharedPreferences(StaticClass.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        database = FirebaseFirestore.getInstance();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
         userReference = database.collection("doctors").document(sharedPreferences.getString(StaticClass.EMAIL, ""));
         findViewsByIds();
         setData();

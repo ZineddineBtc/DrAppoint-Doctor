@@ -55,7 +55,7 @@ public class StaticClass {
         }
     }
     public static String getCurrentTime(){
-        return new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        return new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 .format(Calendar.getInstance().getTime());
     }
 }
