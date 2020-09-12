@@ -231,6 +231,7 @@ public class SetProfileActivity extends AppCompatActivity {
         editor.putString(StaticClass.CITY, city);
         editor.putString(StaticClass.EMAIL, email);
         editor.putLong(StaticClass.MAX, max);
+        editor.putBoolean(StaticClass.VACATION, false);
         editor.putString(StaticClass.SUNDAY, sunday);
         editor.putString(StaticClass.MONDAY, monday);
         editor.putString(StaticClass.TUESDAY, tuesday);
@@ -248,6 +249,7 @@ public class SetProfileActivity extends AppCompatActivity {
         userReference.put("city", city);
         userReference.put("specialty", specialty);
         userReference.put("max", max);
+        userReference.put("vacation", false);
         userReference.put("schedule", getSchedule());
 
         database.collection("doctors")

@@ -25,7 +25,7 @@ public class StaticClass {
     public static String THURSDAY = "thursday";
     public static String FRIDAY = "friday";
     public static String SATURDAY = "saturday";
-    public static String PHOTO = "photo";
+    public static String VACATION = "vacation";
     public static String DOCTOR_ID = "doctor_id";
     public static String mySimpleDateFormat = "dd-MM-yyyy";
 

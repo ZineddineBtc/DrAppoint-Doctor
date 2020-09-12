@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,21 +32,23 @@ public class ProfileFragment extends Fragment {
     private View fragmentView;
     private LinearLayout showScheduleLL, editScheduleLL;
     private TextView emailTV, nameTV, specialtyTV, phoneTV, addressCityTV, maxTV, errorTV,
-                     sunday, monday, tuesday, wednesday, thursday, friday, saturday;
+                     sunday, monday, tuesday, wednesday, thursday, friday, saturday,
+                     vacationTV;
     private EditText nameET, specialtyET, phoneET, addressET, cityET, maxET,
              sundayStart, mondayStart, tuesdayStart, wednesdayStart,
              thursdayStart, fridayStart, saturdayStart,
              sundayEnd, mondayEnd, tuesdayEnd, wednesdayEnd,
              thursdayEnd, fridayEnd, saturdayEnd;
     private ImageView editNameIV, editSpecialtyIV, editPhoneIV, editAddressCityIV,
-            editMaxIV, editScheduleIV;
-    private CheckBox sundayCheck, mondayCheck, tuesdayCheck, wednesdayCheck,
+            editMaxIV, editVacationIV, editScheduleIV;
+    private CheckBox vacationCB,
+            sundayCheck, mondayCheck, tuesdayCheck, wednesdayCheck,
              thursdayCheck, fridayCheck, saturdayCheck;
     private String[] sundayArr =new String[2], mondayArr =new String[2], tuesdayArr =new String[2], wednesdayArr =new String[2],
             thursdayArr =new String[2], fridayArr =new String[2], saturdayArr =new String[2];
     private String sun, mon, tues, wednes, thurs, fri, satur;
     private boolean editName, editSpecialty, editPhone, editAddressCity,
-            editMax, editSchedule;
+            editMax, editVacation, editSchedule;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private DocumentReference userReference;
@@ -113,6 +117,9 @@ public class ProfileFragment extends Fragment {
         editScheduleIV = fragmentView.findViewById(R.id.editScheduleIV);
         editScheduleLL = fragmentView.findViewById(R.id.editScheduleLL);
         showScheduleLL = fragmentView.findViewById(R.id.showsScheduleLL);
+        vacationTV = fragmentView.findViewById(R.id.vacationTV);
+        editVacationIV = fragmentView.findViewById(R.id.editVacationIV);
+        vacationCB = fragmentView.findViewById(R.id.vacationCB);
     }
     @SuppressLint("SetTextI18n")
     private void setData(){
@@ -130,6 +137,13 @@ public class ProfileFragment extends Fragment {
         cityET.setText(sharedPreferences.getString(StaticClass.CITY, "no city"));
         maxTV.setText(String.valueOf(sharedPreferences.getLong(StaticClass.MAX, 0)));
         maxET.setText(String.valueOf(sharedPreferences.getLong(StaticClass.MAX, 0)));
+        if(sharedPreferences.getBoolean(StaticClass.VACATION, false)){
+            vacationTV.setText(R.string.on_vacation);
+            vacationCB.setChecked(true);
+        }else{
+            vacationTV.setText(R.string.not_on_vacation);
+            vacationCB.setChecked(false);
+        }
         getSchedule();
         setShowSchedule();
     }
@@ -267,6 +281,15 @@ public class ProfileFragment extends Fragment {
                 editMax = !editMax;
             }
         });
+        editVacationIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vacationCB.setVisibility(editVacation ? View.INVISIBLE : View.VISIBLE);
+                editVacationIV.setImageResource(editVacation ? R.drawable.ic_edit : R.drawable.ic_check);
+                if(editVacation) updateVacation();
+                editVacation = !editVacation;
+            }
+        });
         editScheduleIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -349,6 +372,12 @@ public class ProfileFragment extends Fragment {
         }else{
             displayErrorTV();
         }
+    }
+    private void updateVacation(){
+        editor.putBoolean(StaticClass.VACATION, vacationCB.isChecked());
+        editor.apply();
+        userReference.update("vacation", vacationCB.isChecked());
+        setData();
     }
     private void setCheckedToClosed(){
         if(sundayCheck.isChecked()) sun="closed";

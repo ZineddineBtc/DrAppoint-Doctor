@@ -1,10 +1,8 @@
 package com.example.drappoint_doctor.activities.core.fragments;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,11 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.example.drappoint_doctor.R;
 import com.example.drappoint_doctor.StaticClass;
 import com.example.drappoint_doctor.adapters.SetDate;
@@ -48,7 +43,7 @@ public class PatientsFragment extends Fragment {
     private ArrayList<Patient> patients = new ArrayList<>();
     private ProgressDialog progressDialog;
     private FirebaseFirestore database;
-    private TextView dateTV, nameTV, emailTV, phoneTV, addressTV, emptyListTV;
+    private TextView onVacationTV, dateTV, nameTV, emailTV, phoneTV, addressTV, emptyListTV;
     private LinearLayout shadeLL, patientLL;
     private String doctorId;
     private DocumentReference patientReference;
@@ -58,6 +53,9 @@ public class PatientsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_patients, container, false);
+        onVacationTV = fragmentView.findViewById(R.id.onVacationIV);
+        onVacationTV.setVisibility(fragmentView.getContext().getSharedPreferences(StaticClass.SHARED_PREFERENCES, Context.MODE_PRIVATE).getBoolean(StaticClass.VACATION, false)?
+                View.VISIBLE : View.GONE);
         doctorId = fragmentView.getContext().getSharedPreferences(StaticClass.SHARED_PREFERENCES, Context.MODE_PRIVATE).getString(StaticClass.EMAIL, " ");
         database = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(fragmentView.getContext());

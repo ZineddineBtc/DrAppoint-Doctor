@@ -269,6 +269,42 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.1"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_exclamation"/>
+                <TextView
+                    android:id="@+id/vacationTV"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="40dp"
+                    android:text="@string/not_on_vacation"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+                <CheckBox
+                    android:visibility="invisible"
+                    android:id="@+id/vacationCB"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/editVacationIV"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_schedule"/>
                 <TextView
                     android:layout_width="0dp"

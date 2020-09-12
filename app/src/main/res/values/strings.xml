@@ -74,4 +74,9 @@
     <string name="patients_booked_for">Patients booked for</string>
     <string name="title_patients">Patients</string>
     <string name="no_patients_for_this_date">No patients for this date</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="not_on_vacation">Not on Vacation</string>
+    <string name="on_vacation">On Vacation</string>
+    <string name="patients_cannot_book_appointment_as_you_are_currently_on_vacation">Patients cannot book appointment, as you are currently on vacation</string>
 </resources>
