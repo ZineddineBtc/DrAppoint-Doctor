@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_patients" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.drappoint_doctor.activities.core.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.drappoint_doctor.activities.core.fragments.ProfileFragment"
         android:label="@string/title_profile"
