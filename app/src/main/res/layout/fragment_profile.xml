@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -280,18 +281,11 @@
                     android:gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"/>
-                <CheckBox
-                    android:visibility="invisible"
-                    android:id="@+id/vacationCB"
+                <Switch
+                    android:id="@+id/vacationSwitch"
                     android:layout_width="0dp"
                     android:layout_weight="0.1"
                     android:layout_height="wrap_content"/>
-                <ImageView
-                    android:id="@+id/editVacationIV"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.1"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_edit"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -540,6 +534,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/sundayEnd"
@@ -547,6 +542,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/sundayCheck"
@@ -573,6 +569,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/mondayEnd"
@@ -580,6 +577,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/mondayCheck"
@@ -606,6 +604,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/tuesdayEnd"
@@ -613,6 +612,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/tuesdayCheck"
@@ -639,6 +639,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/wednesdayEnd"
@@ -646,6 +647,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/wednesdayCheck"
@@ -672,6 +674,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/thursdayEnd"
@@ -679,6 +682,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/thursdayCheck"
@@ -705,6 +709,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/fridayEnd"
@@ -712,6 +717,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/fridayCheck"
@@ -738,6 +744,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="08:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <EditText
                         android:id="@+id/saturdayEnd"
@@ -745,6 +752,7 @@
                         android:layout_weight="0.35"
                         android:layout_height="wrap_content"
                         android:hint="16:00"
+                        android:inputType="time"
                         android:gravity="center_horizontal"/>
                     <CheckBox
                         android:id="@+id/saturdayCheck"
@@ -759,6 +767,14 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/white_background_border"/>
+            <TextView
+                android:id="@+id/signOutTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Sign out"
+                android:textSize="14sp"
+                android:textColor="#ff0000"/>
         </LinearLayout>
     </ScrollView>
 

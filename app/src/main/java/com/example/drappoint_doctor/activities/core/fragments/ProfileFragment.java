@@ -2,6 +2,7 @@ package com.example.drappoint_doctor.activities.core.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +24,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.drappoint_doctor.R;
 import com.example.drappoint_doctor.StaticClass;
+import com.example.drappoint_doctor.activities.entry.LoginActivity;
 import com.example.drappoint_doctor.adapters.SetTime;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,16 +38,16 @@ public class ProfileFragment extends Fragment {
     private LinearLayout showScheduleLL, editScheduleLL;
     private TextView emailTV, nameTV, specialtyTV, phoneTV, addressCityTV, maxTV, errorTV,
                      sunday, monday, tuesday, wednesday, thursday, friday, saturday,
-                     vacationTV;
+                     vacationTV, signOutTV;
     private EditText nameET, specialtyET, phoneET, addressET, cityET, maxET,
              sundayStart, mondayStart, tuesdayStart, wednesdayStart,
              thursdayStart, fridayStart, saturdayStart,
              sundayEnd, mondayEnd, tuesdayEnd, wednesdayEnd,
              thursdayEnd, fridayEnd, saturdayEnd;
     private ImageView editNameIV, editSpecialtyIV, editPhoneIV, editAddressCityIV,
-            editMaxIV, editVacationIV, editScheduleIV;
-    private CheckBox vacationCB,
-            sundayCheck, mondayCheck, tuesdayCheck, wednesdayCheck,
+            editMaxIV, editScheduleIV;
+    private Switch vacationSwitch;
+    private CheckBox sundayCheck, mondayCheck, tuesdayCheck, wednesdayCheck,
              thursdayCheck, fridayCheck, saturdayCheck;
     private String[] sundayArr =new String[2], mondayArr =new String[2], tuesdayArr =new String[2], wednesdayArr =new String[2],
             thursdayArr =new String[2], fridayArr =new String[2], saturdayArr =new String[2];
@@ -118,8 +123,8 @@ public class ProfileFragment extends Fragment {
         editScheduleLL = fragmentView.findViewById(R.id.editScheduleLL);
         showScheduleLL = fragmentView.findViewById(R.id.showsScheduleLL);
         vacationTV = fragmentView.findViewById(R.id.vacationTV);
-        editVacationIV = fragmentView.findViewById(R.id.editVacationIV);
-        vacationCB = fragmentView.findViewById(R.id.vacationCB);
+        vacationSwitch = fragmentView.findViewById(R.id.vacationSwitch);
+        signOutTV = fragmentView.findViewById(R.id.signOutTV);
     }
     @SuppressLint("SetTextI18n")
     private void setData(){
@@ -139,11 +144,26 @@ public class ProfileFragment extends Fragment {
         maxET.setText(String.valueOf(sharedPreferences.getLong(StaticClass.MAX, 0)));
         if(sharedPreferences.getBoolean(StaticClass.VACATION, false)){
             vacationTV.setText(R.string.on_vacation);
-            vacationCB.setChecked(true);
+            vacationSwitch.setChecked(true);
         }else{
             vacationTV.setText(R.string.not_on_vacation);
-            vacationCB.setChecked(false);
+            vacationSwitch.setChecked(false);
         }
+        vacationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    vacationTV.setText(R.string.on_vacation);
+                    vacationSwitch.setChecked(true);
+                }else{
+                    vacationTV.setText(R.string.not_on_vacation);
+                    vacationSwitch.setChecked(false);
+                }
+                editor.putBoolean(StaticClass.VACATION, isChecked);
+                editor.apply();
+                userReference.update("vacation", isChecked);
+            }
+        });
         getSchedule();
         setShowSchedule();
     }
@@ -281,15 +301,6 @@ public class ProfileFragment extends Fragment {
                 editMax = !editMax;
             }
         });
-        editVacationIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vacationCB.setVisibility(editVacation ? View.INVISIBLE : View.VISIBLE);
-                editVacationIV.setImageResource(editVacation ? R.drawable.ic_edit : R.drawable.ic_check);
-                if(editVacation) updateVacation();
-                editVacation = !editVacation;
-            }
-        });
         editScheduleIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -298,6 +309,13 @@ public class ProfileFragment extends Fragment {
                 editScheduleIV.setImageResource(editSchedule ? R.drawable.ic_edit : R.drawable.ic_check);
                 if(editSchedule) updateSchedule();
                 editSchedule = !editSchedule;
+            }
+        });
+        signOutTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(fragmentView.getContext(), LoginActivity.class));
             }
         });
     }
@@ -372,12 +390,6 @@ public class ProfileFragment extends Fragment {
         }else{
             displayErrorTV();
         }
-    }
-    private void updateVacation(){
-        editor.putBoolean(StaticClass.VACATION, vacationCB.isChecked());
-        editor.apply();
-        userReference.update("vacation", vacationCB.isChecked());
-        setData();
     }
     private void setCheckedToClosed(){
         if(sundayCheck.isChecked()) sun="closed";

@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -258,8 +259,18 @@ public class SetProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        startActivity(new Intent(getApplicationContext(), CoreActivity.class));
-                        progressDialog.dismiss();
+                        Map<String, Object> dateReference = new HashMap<>();
+                        dateReference.put(StaticClass.getCurrentTime(), new ArrayList<String>());
+                        database.collection("doctors-date")
+                                .document(email)
+                                .set(dateReference)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        startActivity(new Intent(getApplicationContext(), CoreActivity.class));
+                                        progressDialog.dismiss();
+                                    }
+                                });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
