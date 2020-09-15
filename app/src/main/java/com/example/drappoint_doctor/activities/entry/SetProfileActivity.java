@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,14 +45,15 @@ public class SetProfileActivity extends AppCompatActivity {
              sundayEnd, mondayEnd, tuesdayEnd, wednesdayEnd, thursdayEnd, fridayEnd, saturdayEnd;
     TextView errorTV, scheduleTV;
     Button finishButton, saveScheduleButton;
-    LinearLayout shadeLL, scheduleLL;
+    LinearLayout shadeLL;
+    ScrollView scheduleSV;
     SharedPreferences sharedPreferences;
     String name, phone, address, city, email, specialty,
         sunday, monday, tuesday, wednesday, thursday, friday, saturday;
     Long max;
     FirebaseFirestore database;
     ProgressDialog progressDialog;
-    boolean canFinish, canSave;
+    boolean canSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +128,7 @@ public class SetProfileActivity extends AppCompatActivity {
         finishButton = findViewById(R.id.finishButton);
         saveScheduleButton = findViewById(R.id.saveScheduleButton);
         shadeLL = findViewById(R.id.shadeLL);
-        scheduleLL = findViewById(R.id.scheduleLL);
+        scheduleSV = findViewById(R.id.scheduleSV);
         scheduleTV = findViewById(R.id.scheduleTV);
     }
     public void setDaysClickable(){
@@ -147,7 +149,7 @@ public class SetProfileActivity extends AppCompatActivity {
     }
     public void showSchedule(View view){
         shadeLL.setVisibility(View.VISIBLE);
-        scheduleLL.setVisibility(View.VISIBLE);
+        scheduleSV.setVisibility(View.VISIBLE);
         maxET.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -171,7 +173,7 @@ public class SetProfileActivity extends AppCompatActivity {
             max = Long.parseLong(maxET.getText().toString());
             setDays();
             shadeLL.setVisibility(View.GONE);
-            scheduleLL.setVisibility(View.GONE);
+            scheduleSV.setVisibility(View.GONE);
             scheduleTV.setBackgroundColor(getColor(R.color.green));
         }
     }
